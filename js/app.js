@@ -85,7 +85,7 @@ function initMap() {
 
 var viewModel = function() {
   var self = this;
-  var hasMarker = false;
+  var hasMarker = true;
   self.inputValue = ko.observable();
   self.filterValue = ko.observable();
   self.filterArr = ko.computed(function() {
@@ -104,7 +104,7 @@ var viewModel = function() {
       window.alert('You must enter an area, or address.');
     } else {
       hasMarker = false;
-      self.filterArr().forEach(function(item, index) {
+      markers.forEach(function(item, index) {
         if(item.title.toLowerCase().indexOf(address.toLowerCase()) < 0) {
           markers[index].setMap(null)
         } else {
@@ -124,23 +124,18 @@ var viewModel = function() {
       initMap();
     }
   }
-  // // 输入筛选的地点时
-  // self.filterAddress = function() {
-  //   console.log(11, self.filterValue());
-  //   if (self.filterValue()) {
-  //     self.initLocations.forEach(function(key, index){
-  //       if (key.title.indexOf(self.filterValue()) >= 0) {
-  //         self.filterArr().push(self.initLocations[index])
-  //       }
-  //     })
-  //   } else {
-  //     self.filterArr = ko.observable(initLocations);
-  //   }
-  // }
-  // self.leaveFliter = function() {
-  //   if (!self.filterValue()) {
-  //     self.filterArr = ko.observable(initLocations);
-  //   }
-  // }
+
+  // 输入筛选的地点时
+  self.filterAddress = function() {
+    if (self.filterValue()) {
+      markers.forEach(function(item, index) {
+        if(item.title.toLowerCase().indexOf(self.filterValue().toLowerCase()) < 0) {
+          markers[index].setMap(null)
+        } else {
+          markers[index].setMap(map);
+        }
+      })
+    }
+  }
 }
 ko.applyBindings(new viewModel());

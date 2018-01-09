@@ -13,7 +13,7 @@
   </header>
   <table class="table"> 
      <thead> 
-        <tr><th><input type="text" data-bind="value: filterValue, valueUpdate: 'afterkeydown'" placeholder="请输入地点名称" class="table-input"></th></tr> 
+        <tr><th><input type="text" data-bind="value: filterValue, valueUpdate: 'afterkeydown', event: { keyup: filterAddress}" placeholder="请输入地点名称" class="table-input"></th></tr> 
      </thead> 
     <tbody data-bind="foreach: filterArr" > 
       <tr class="table-tr" data-bind="click: $parent.searchAddress"> 
