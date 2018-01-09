@@ -1,4 +1,4 @@
-var map, defaultIcon, defaultIcon;
+var map, defaultIcon, defaultIcon, largeInfowindow;
 var markers = [];
 var initLocations = [
   {title: 'Park Ave Penthouse', location: {lat: 40.7713024, lng: -73.9632393}},
@@ -115,6 +115,10 @@ var viewModel = function() {
             markers[index].setAnimation(null);
           }, 2000);
           markers[index].setMap(map);
+          if(event.title) {
+            largeInfowindow.setContent(event.title);
+            largeInfowindow.open(map, markers[index]);
+          }
         }
       })
     }
@@ -132,6 +136,11 @@ var viewModel = function() {
         if(item.title.toLowerCase().indexOf(self.filterValue().toLowerCase()) < 0) {
           markers[index].setMap(null)
         } else {
+          markers[index].setAnimation(google.maps.Animation.BOUNCE);
+          // 2 秒钟后停止动画
+          window.setTimeout(function(){
+            markers[index].setAnimation(null);
+          }, 2000);
           markers[index].setMap(map);
         }
       })
