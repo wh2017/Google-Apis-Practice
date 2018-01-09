@@ -88,6 +88,7 @@ var viewModel = function() {
   var hasMarker = true;
   self.inputValue = ko.observable();
   self.filterValue = ko.observable();
+  self.clientWidth = ko.observable(document.body.clientWidth);
   self.filterArr = ko.computed(function() {
     if (!self.filterValue()) {
       return initLocations;

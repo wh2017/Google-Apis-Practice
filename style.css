@@ -47,10 +47,12 @@ button {
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 #map {
-	/*height: calc(100% - 50px);*/
+	height: calc(100% - 50px);
 	float: right;
 	width: 80%;
-	height: 100%;
+}
+.show-map {
+	width: 100% !important;
 }
 .article {
     list-style-type: none;

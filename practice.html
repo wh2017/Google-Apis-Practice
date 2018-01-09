@@ -11,7 +11,7 @@
     <input type="text" data-bind="value: inputValue" id="search-within-text" placeholder="请输入地点名称">
     <button data-bind="click: searchAddress">确定</button>
   </header>
-  <table class="table"> 
+  <table class="table" data-bind="visible: clientWidth() > 670"> 
      <thead> 
         <tr><th><input type="text" data-bind="value: filterValue, valueUpdate: 'afterkeydown', event: { keyup: filterAddress}" placeholder="请输入地点名称" class="table-input"></th></tr> 
      </thead> 
@@ -21,7 +21,7 @@
       </tr> 
     </tbody>
   </table>
-  <div id="map"></div>
+  <div id="map" data-bind="css: {'show-map': clientWidth() <= 670}"></div>
   <script src="js/lib/knockout-3.2.0.js"></script>
   <script src="js/lib/jquery.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
